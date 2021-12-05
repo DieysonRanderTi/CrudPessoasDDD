@@ -11,9 +11,9 @@ namespace CrudPessoasDDD.Domain.Entities
         public string Rua { get; set; }
         public string Bairro { get; set; }
         public string Cidade { get; set; }
-        public Estado Estado { get; set; }
+        public string Estado { get; set; }
 
-        public Endereco(int id, string rua, string bairro, string cidade, Estado estado)
+        public Endereco(int id, string rua, string bairro, string cidade, string estado)
         {
             Id = id;
             Rua = rua;

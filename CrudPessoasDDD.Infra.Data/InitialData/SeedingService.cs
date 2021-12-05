@@ -21,11 +21,11 @@ namespace CrudPessoasDDD.Infra.Data.InitialData
                 return;
             }
 
-            Endereco endereco = new Endereco(1, "Rua Padrão", "Bairro Padrão", "Cidade Padrão", Estado.MG);
+            Endereco endereco = new Endereco(1, "Rua Padrão1", "Bairro Padrão1", "Cidade Padrão1", "MG");
 
             Pessoa pessoa = new Pessoa(1, "Nome Padrão", "Sobrenome Padrão", new DateTime(2000, 01, 01), endereco, Sexo.Masculino);
 
-            _crudPessoasDDDContext.Endereco.Add(endereco);
+            _crudPessoasDDDContext.Endereco.AddRange(endereco);
             _crudPessoasDDDContext.Pessoa.Add(pessoa);
 
             _crudPessoasDDDContext.SaveChanges();
