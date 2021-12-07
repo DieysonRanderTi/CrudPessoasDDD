@@ -1,0 +1,67 @@
+﻿@model CrudPessoasDDD.Domain.Entities.Pessoa
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pessoas</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sobrenome)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco.Rua)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Endereco.Rua)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco.Bairro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Endereco.Bairro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco.Cidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Endereco.Cidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Endereco.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Endereco.Estado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Voltar para Lista</a>
+</div>
+

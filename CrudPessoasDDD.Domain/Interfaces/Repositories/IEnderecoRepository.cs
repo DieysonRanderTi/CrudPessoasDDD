@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CrudPessoasDDD.Domain.Interfaces
+namespace CrudPessoasDDD.Domain.Interfaces.Repositories
 {
-    public interface IPessoaRepository : IRepositoryBase<Pessoa>
+    public interface IEnderecoRepository : IRepositoryBase<Endereco>
     {
     }
 }

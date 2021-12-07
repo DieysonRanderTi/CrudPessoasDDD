@@ -1,9 +1,4 @@
-﻿using CrudPessoasDDD.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CrudPessoasDDD.Domain.Entities
+﻿namespace CrudPessoasDDD.Domain.Entities
 {
     public class Endereco
     {
@@ -12,6 +7,10 @@ namespace CrudPessoasDDD.Domain.Entities
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
+
+        public Endereco()
+        {
+        }
 
         public Endereco(int id, string rua, string bairro, string cidade, string estado)
         {

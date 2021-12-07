@@ -1,4 +1,4 @@
-﻿using CrudPessoasDDD.Domain.Interfaces;
+﻿using CrudPessoasDDD.Domain.Interfaces.Repositories;
 using CrudPessoasDDD.Infra.Data.Contexto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,41 +9,44 @@ namespace CrudPessoasDDD.Infra.Data.Repositorios
 {
     public class RepositorioBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-        protected CrudPessoasDDDContext Db = new CrudPessoasDDDContext();
+        protected CrudPessoasDDDContext _crudPessoasDDDContext;
 
-
+        public RepositorioBase(CrudPessoasDDDContext crudPessoasDDDContext)
+        {
+            _crudPessoasDDDContext = crudPessoasDDDContext;
+        }
 
         public void Add(TEntity obj)
         {
-            Db.Set<TEntity>().Add(obj);
-            Db.SaveChanges();
+            _crudPessoasDDDContext.Set<TEntity>().Add(obj);
+            _crudPessoasDDDContext.SaveChanges();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return Db.Set<TEntity>().ToList();
+            return _crudPessoasDDDContext.Set<TEntity>().ToList();
         }
 
         public TEntity GetById(int id)
         {
-            return Db.Set<TEntity>().Find(id);
+            return _crudPessoasDDDContext.Set<TEntity>().Find(id);
         }
 
         public void Remove(TEntity obj)
         {
-            Db.Set<TEntity>().Remove(obj);
-            Db.SaveChanges();
+            _crudPessoasDDDContext.Set<TEntity>().Remove(obj);
+            _crudPessoasDDDContext.SaveChanges();
         }
 
         public void Update(TEntity obj)
         {
-            Db.Entry(obj).State = EntityState.Modified;
-            Db.SaveChanges();
+            _crudPessoasDDDContext.Entry(obj).State = EntityState.Modified;
+            _crudPessoasDDDContext.SaveChanges();
         }
     }
 }

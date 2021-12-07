@@ -4,9 +4,9 @@ using CrudPessoasDDD.Infra.Data.Contexto;
 
 namespace CrudPessoasDDD.Infra.Data.Repositorios
 {
-    public class PessoaRepositorio : RepositorioBase<Pessoa>, IPessoaRepository
+    public class EnderecoRepositorio : RepositorioBase<Endereco>, IEnderecoRepository
     {
-        public PessoaRepositorio(CrudPessoasDDDContext crudPessoasDDDContext) : base(crudPessoasDDDContext)
+        public EnderecoRepositorio(CrudPessoasDDDContext crudPessoasDDDContext) : base(crudPessoasDDDContext)
         {
         }
     }
