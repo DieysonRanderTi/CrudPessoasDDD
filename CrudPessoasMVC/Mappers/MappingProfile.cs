@@ -14,6 +14,9 @@ namespace CrudPessoasDDD.MVC.Mappers
                 .ForMember(dest => dest.NomeCompleto, map => map.MapFrom(src => $"{src.Nome} {src.Sobrenome}"))
                 .ForMember(dest => dest.Endereco, map => map.MapFrom(src => $"{src.Endereco.Cidade} {src.Endereco.Estado}"));
 
+            CreateMap<Pessoa, PessoaModel>();
+
+            CreateMap<UserRegister, UserRegisterModel>();
         }
     }
 }

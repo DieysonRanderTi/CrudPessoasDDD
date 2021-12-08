@@ -2,12 +2,14 @@
 using CrudPessoasDDD.Application.Interface;
 using CrudPessoasDDD.Domain.Entities;
 using CrudPessoasDDD.MVC.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CrudPessoasDDD.MVC.Controllers
 {
+    [Authorize]
     public class PessoaController : Controller
     {
         private readonly IMapper _mapper;
@@ -30,6 +32,7 @@ namespace CrudPessoasDDD.MVC.Controllers
             return View(pessoas);
         }
 
+        [HttpGet]
         public IActionResult Create(PessoaModel pessoa)
         {
             return View(pessoa);
@@ -39,8 +42,17 @@ namespace CrudPessoasDDD.MVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Pessoa pessoa)
         {
-            _pessoaAppService.Add(pessoa);
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                _pessoaAppService.Add(pessoa);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                ModelState.AddModelError("Cadastro Inválido","Preencha todos os Campos e tente novamente.");
+            }
+
+            return View();
         }
 
         public IActionResult Edit(int id)
