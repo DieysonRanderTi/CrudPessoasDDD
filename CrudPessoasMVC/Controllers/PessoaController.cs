@@ -28,22 +28,34 @@ namespace CrudPessoasDDD.MVC.Controllers
         public IActionResult Index()
         {
             var pessoas = _mapper.Map<IEnumerable<Pessoa>, IEnumerable<PessoaGridModel>>(_pessoaAppService.GetAll());
+            var enderecos = _mapper.Map<IEnumerable<Endereco>, IEnumerable<EnderecoGridModel>>(_enderecoAppService.GetAll());
+
+            EnderecoGridModel enderecoGridModel = new EnderecoGridModel();
+
+            foreach (var pessoa in pessoas)
+            {
+                enderecoGridModel.EnderecoCompleto = enderecos.FirstOrDefault(x => x.Id == pessoa.EnderecoId).EnderecoCompleto;
+                pessoa.Endereco = enderecoGridModel.EnderecoCompleto;
+
+            }
 
             return View(pessoas);
         }
 
         [HttpGet]
-        public IActionResult Create(PessoaModel pessoa)
+        public IActionResult Create(Pessoa pessoa)
         {
-            return View(pessoa);
+            var pessoaModel = _mapper.Map<Pessoa, PessoaModel>(pessoa);
+            return View(pessoaModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pessoa pessoa)
+        public IActionResult Create(PessoaModel pessoaModel)
         {
             if (ModelState.IsValid)
             {
+                var pessoa = _mapper.Map<PessoaModel, Pessoa>(pessoaModel);
                 _pessoaAppService.Add(pessoa);
                 return RedirectToAction(nameof(Index));
             }
@@ -57,15 +69,16 @@ namespace CrudPessoasDDD.MVC.Controllers
 
         public IActionResult Edit(int id)
         {
-            var obj = _pessoaAppService.GetById(id);
-            var endereco = _enderecoAppService.GetAll().FirstOrDefault(x => x.Id == obj.EnderecoId);
+            var pessoa = _mapper.Map<Pessoa, PessoaModel>(_pessoaAppService.GetById(id));
+            
+            var endereco = _enderecoAppService.GetAll().FirstOrDefault(x => x.Id == pessoa.EnderecoId);
 
             if (endereco != null)
             {
-                obj.Endereco = endereco;
+                pessoa.Endereco = endereco;
             }
                 
-            return View(obj);
+            return View(pessoa);
         }
         [HttpPost]
         public IActionResult Edit(int id, Pessoa pessoa)
@@ -79,7 +92,7 @@ namespace CrudPessoasDDD.MVC.Controllers
 
         public IActionResult Details(int id)
         {
-            var pessoa = _pessoaAppService.GetAll().FirstOrDefault(x => x.Id == id);
+            var pessoa = _mapper.Map<Pessoa, PessoaModel>(_pessoaAppService.GetAll().FirstOrDefault(x => x.Id == id));
             var endereco = _enderecoAppService.GetAll().FirstOrDefault(x => x.Id == pessoa.EnderecoId);
 
             pessoa.Endereco = endereco;
@@ -91,7 +104,7 @@ namespace CrudPessoasDDD.MVC.Controllers
 
         public IActionResult Delete(int id)
         {
-            var pessoa = _pessoaAppService.GetById(id);
+            var pessoa = _mapper.Map<Pessoa, PessoaModel>(_pessoaAppService.GetById(id));
             var endereco = _enderecoAppService.GetAll().FirstOrDefault(x => x.Id == pessoa.EnderecoId);
             pessoa.Endereco = endereco;
 

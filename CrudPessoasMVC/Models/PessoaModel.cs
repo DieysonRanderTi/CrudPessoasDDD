@@ -23,6 +23,8 @@ namespace CrudPessoasDDD.MVC.Models
         [Required(ErrorMessage = "Selecione uma Data de Nascimento")]
         public DateTime DataNascimento { get; set; }
         public int EnderecoId { get; set; }
+
+        [Required(ErrorMessage = "Endereco é obrigatório")]
         public Endereco Endereco { get; set; }
         public Sexo Sexo { get; set; }
     }
@@ -33,13 +35,16 @@ namespace CrudPessoasDDD.MVC.Models
 
         [Display(Name ="Nome Completo")]
         public string NomeCompleto { get; set; }
+
         [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
-        [Display(Name = "Endereço")]
+
         public int EnderecoId { get; set; }
 
         [Display(Name ="Endereço")]
         public string Endereco { get; set; }
+
         public string Sexo { get; set; }
     }
 }

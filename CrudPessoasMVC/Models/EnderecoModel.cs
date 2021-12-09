@@ -14,4 +14,10 @@ namespace CrudPessoasDDD.MVC.Models
         public string Cidade { get; set; }
         public string Estado { get; set; }
     }
+
+    public class EnderecoGridModel
+    {
+        public int Id { get; set; }
+        public string EnderecoCompleto { get; set; }
+    }
 }
