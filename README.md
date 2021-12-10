@@ -9,5 +9,8 @@ Migrations,
 Entity Framework Core,
 AutoMapper para mapeamento das entidades,
 Identity para Autenticação de Usuários.
+Banco de Dados Mysql
 
 O projeto ainda necessita de tratamento de erros, mais implementações visando segurança e melhora no layout, estes serão implementados futuramente.
+
+OBS: Ao se cadastrar no sistema a senha deve ter pelo menos, um caractere especial, uma letra maiúscula e um número.
